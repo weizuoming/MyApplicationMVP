@@ -16,7 +16,7 @@ import com.example.hello.myapplicationmvp.view.Main2Activity;
 import com.example.hello.myapplicationmvp.view.Main3Activity;
 import com.google.gson.Gson;
 
-public class MainActivity extends AppCompatActivity implements DengluV_i{
+public class MainActivity extends AppCompatActivity implements DengluV_i {
 
     private EditText pas;
     private EditText ph;
@@ -31,19 +31,18 @@ public class MainActivity extends AppCompatActivity implements DengluV_i{
         setContentView(R.layout.activity_main);
 
         ph = (EditText) findViewById(R.id.phone);
-        pas= (EditText) findViewById(R.id.password);
+        pas = (EditText) findViewById(R.id.password);
         ligon = (Button) findViewById(R.id.ligon);
         reg = (Button) findViewById(R.id.reg);
         denglu_p = new Denglu_p(this);
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in=new Intent(MainActivity.this, Main2Activity.class);
+                Intent in = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(in);
             }
         });
         ligon.setOnClickListener(new View.OnClickListener() {
-
 
 
             @Override
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements DengluV_i{
                 String name = ph.getText().toString();
                 String password = pas.getText().toString();
 
-                denglu_p.getdeat(API.denglu_api,name,password);
+                denglu_p.getdeat(API.denglu_api, name, password);
 
             }
         });
@@ -59,15 +58,15 @@ public class MainActivity extends AppCompatActivity implements DengluV_i{
 
     @Override
     public void success(String s) {
-        Gson g=new Gson();
+        Gson g = new Gson();
         Deng_bean deng_bean = g.fromJson(s, Deng_bean.class);
         msg = deng_bean.getMsg();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this, msg,Toast.LENGTH_SHORT).show();
-                if (msg.equals("登录注册")){
-                    Intent in=new Intent(MainActivity.this, Main3Activity.class);
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                if (msg.equals("登录注册")) {
+                    Intent in = new Intent(MainActivity.this, Main3Activity.class);
                     startActivity(in);
                 }
 
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements DengluV_i{
 
     @Override
     public void jumpactivity() {
-
 
 
     }
